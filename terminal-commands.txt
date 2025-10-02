@@ -1,0 +1,14 @@
+# 1. Запуск контейнеров
+docker compose up -d
+
+# 2. Ожидание инициализации
+sleep 30
+
+# 3. Проверка статуса контейнеров
+docker compose ps
+
+# 4. Остановка проекта
+docker compose down
+
+# 5. Полная очистка
+docker compose down -v

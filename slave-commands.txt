@@ -1,0 +1,18 @@
+-- Подключение к Slave: localhost:3307, пользователь: root, пароль: rootpassword
+
+-- 1. Проверка что мы на Slave
+SELECT @@hostname as server_name, 'SLAVE' as role;
+
+-- 2. Просмотр данных на Slave (должны быть такие же как на Master)
+SELECT 'ДАННЫЕ НА SLAVE:' as info;
+SELECT * FROM test_replication;
+
+-- 3. Статус репликации
+SHOW SLAVE STATUS;
+
+-- 4. Проверка режимов только для чтения
+SHOW VARIABLES LIKE 'read_only';
+SHOW VARIABLES LIKE 'super_read_only';
+
+-- 5. Попытка записи на Slave (должна быть ошибка)
+INSERT INTO test_replication (data_value) VALUES ('Попытка записи на Slave');

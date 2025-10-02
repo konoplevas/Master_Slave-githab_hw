@@ -1,0 +1,21 @@
+-- Подключение к Master: localhost:3306, пользователь: root, пароль: rootpassword
+
+-- 1. Проверка что мы на Master
+SELECT @@hostname as server_name, 'MASTER' as role;
+
+-- 2. Создание тестовой таблицы
+CREATE TABLE IF NOT EXISTS test_replication (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    data_value VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. Добавление тестовых данных
+INSERT INTO test_replication (data_value) VALUES ('Тестовые данные с Master');
+
+-- 4. Просмотр данных на Master
+SELECT 'ДАННЫЕ НА MASTER:' as info;
+SELECT * FROM test_replication;
+
+-- 5. Статус Master
+SHOW MASTER STATUS;
